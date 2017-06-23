@@ -419,7 +419,6 @@ class VersionConfig(object):
                     repr(missing_key), repr(version)))
 
         keys_needing_representation = set()
-        found_required = False
 
         for k in self.order():
             v = values[k]
@@ -430,9 +429,6 @@ class VersionConfig(object):
                 continue
 
             if not v.is_optional():
-                found_required = True
-                keys_needing_representation.add(k)
-            elif not found_required:
                 keys_needing_representation.add(k)
 
         required_by_format = set(self._labels_for_format(serialize_format))
